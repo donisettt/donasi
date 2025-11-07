@@ -1,7 +1,5 @@
-/* Import Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Reset & Global Style */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,22 +8,20 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: #f8f9fe; /* Background biru sangat muda */
+    background-color: #f8f9fe;
     color: #334155;
     padding: 20px;
 }
 
-/* Layout Utama */
 .container {
     max-width: 1200px;
     margin: 30px auto;
     padding: 40px;
     background-color: #ffffff;
-    border-radius: 16px; /* Sesuai mockup, lebih bulat */
+    border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* Judul Halaman */
 h1 {
     font-size: 32px;
     font-weight: 700;
@@ -39,7 +35,6 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* Header (Search + Tombol Tambah) */
 .header-toolbar {
     display: flex;
     justify-content: space-between;
@@ -54,10 +49,10 @@ h2 {
 
 .search-bar input {
     width: 100%;
-    padding: 12px 16px 12px 40px; /* padding kiri untuk ikon */
+    padding: 12px 16px 12px 40px;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    background-color: #f8fafc; /* Latar abu-abu muda */
+    background-color: #f8fafc;
     font-size: 14px;
 }
 .search-bar input::placeholder {
@@ -72,7 +67,6 @@ h2 {
     color: #94a3b8;
 }
 
-/* Tombol */
 .btn {
     display: inline-block;
     padding: 12px 20px;
@@ -87,7 +81,7 @@ h2 {
 }
 
 .btn-primary {
-    background-color: #4f46e5; /* Ungu sesuai mockup */
+    background-color: #4f46e5;
     color: #ffffff;
 }
 .btn-primary:hover {
@@ -95,14 +89,13 @@ h2 {
 }
 
 .btn-secondary {
-    background-color: #e2e8f0; /* Abu-abu */
+    background-color: #e2e8f0;
     color: #334155;
 }
 .btn-secondary:hover {
     background-color: #cbd5e1;
 }
 
-/* Tabel */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -134,13 +127,12 @@ h2 {
     color: #1e293b;
 }
 
-/* Badge Status */
 .status-badge {
     display: inline-block;
     padding: 4px 12px;
     font-weight: 600;
     font-size: 12px;
-    border-radius: 999px; /* Pill shape */
+    border-radius: 999px;
 }
 .status-berhasil {
     background-color: #dcfce7;
@@ -155,47 +147,37 @@ h2 {
     color: #991b1b;
 }
 
-/* ======================================= */
-/* === [PERUBAHAN] STYLE IKON AKSI === */
-/* ======================================= */
 .action-buttons {
     display: flex;
-    gap: 16px; /* Jarak antar ikon */
+    gap: 16px;
     align-items: center;
 }
 
 .action-buttons .btn-icon {
     display: inline-block;
-    font-size: 16px; /* Ukuran ikon */
+    font-size: 16px;
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
-/* Warna ikon sesuai mockup */
 .action-buttons .btn-icon.view {
-    color: #334155; /* Hitam/Abu tua */
+    color: #334155;
 }
 .action-buttons .btn-icon.edit {
-    color: #4f46e5; /* Biru/Ungu */
+    color: #4f46e5;
 }
 .action-buttons .btn-icon.delete {
-    color: #ef4444; /* Merah */
+    color: #ef4444;
 }
 
-/* Efek hover */
 .action-buttons .btn-icon:hover {
-    transform: scale(1.15); /* Sedikit membesar */
+    transform: scale(1.15);
     opacity: 0.8;
 }
-/* ======================================= */
-/* === END PERUBAHAN === */
-/* ======================================= */
 
-
-/* Form (Tambah & Edit) */
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 kolom */
+    grid-template-columns: 1fr 1fr;
     gap: 25px;
 }
 
@@ -221,42 +203,38 @@ h2 {
     font-size: 15px;
     border: none;
     border-radius: 10px;
-    background-color: #f1f5f9; /* Background input ungu muda/abu */
+    background-color: #f1f5f9;
     color: #334155;
 }
-/* Style untuk input read-only (Halaman Detail) */
+
 .form-group input:read-only,
 .form-group select:disabled,
 .form-group textarea:read-only {
     background-color: #f1f5f9;
-    color: #64748b; /* Warna teks lebih pudar */
+    color: #64748b;
     cursor: not-allowed;
 }
-
 
 .form-group textarea {
     min-height: 140px;
     resize: vertical;
 }
 
-/* Form 1 kolom untuk Pesan/Doa */
 .form-group.full-width {
-    grid-column: span 2; /* Memakan 2 kolom */
+    grid-column: span 2;
 }
 
-/* Tombol Aksi Form */
 .form-actions {
     display: flex;
-    justify-content: flex-end; /* Tombol di kanan */
+    justify-content: flex-end;
     gap: 12px;
     margin-top: 30px;
-    grid-column: span 2; /* Memakan 2 kolom */
+    grid-column: span 2;
 }
 
-/* Footer */
 footer {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 140px;
     color: #64748b;
     font-size: 14px;
 }

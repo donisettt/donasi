@@ -1,20 +1,14 @@
 <?php
-// 1. Mulai session dan include koneksi DB
+
 session_start();
 require 'db.php';
-
-// ===================================================================
-// BAGIAN LOGIKA (PROCESSOR)
-// ===================================================================
 
 $error_message = '';
 $success_message = '';
 
-// 2. PROSES FORM (CREATE & UPDATE)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_action = $_POST['form_action'] ?? '';
 
-    // Ambil semua data form
     $id_program = $_POST['id_program'];
     $id_donatur = $_POST['id_donatur'];
     $id_metode = $_POST['id_metode'];
@@ -24,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pesan_doa = $_POST['pesan_doa'] ?? '';
 
     try {
-        // A. CREATE
         if ($form_action == 'tambah') {
             $sql = "INSERT INTO transaksi_donasi (id_program, id_donatur, id_metode, id_status, jumlah_donasi, tanggal_donasi, pesan_doa) 
                     VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -33,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['message'] = 'Data donasi berhasil ditambahkan!';
         } 
         
-        // B. UPDATE
         elseif ($form_action == 'edit') {
             $id_transaksi = $_POST['id_transaksi'];
             $sql = "UPDATE transaksi_donasi SET 
@@ -53,11 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// 3. TENTUKAN AKSI DARI URL
-$action = $_GET['action'] ?? 'tampil'; // Default: 'tampil'
+$action = $_GET['action'] ?? 'tampil';
 $id = $_GET['id'] ?? null;
 
-// 4. PROSES AKSI HAPUS (DELETE)
 if ($action == 'hapus' && $id) {
     try {
         $sql = "DELETE FROM transaksi_donasi WHERE id_transaksi = ?";
@@ -71,14 +61,12 @@ if ($action == 'hapus' && $id) {
     exit;
 }
 
-// 5. AMBIL DATA UNTUK DROPDOWN
 $program_list = $pdo->query("SELECT * FROM program_donasi ORDER BY nama_program")->fetchAll();
 $donatur_list = $pdo->query("SELECT * FROM donatur ORDER BY nama_donatur")->fetchAll();
 $metode_list = $pdo->query("SELECT * FROM metode_pembayaran ORDER BY nama_metode")->fetchAll();
 $status_list = $pdo->query("SELECT * FROM status_pembayaran ORDER BY nama_status")->fetchAll();
 
 
-// Cek pesan sukses dari session
 if (isset($_SESSION['message'])) {
     $success_message = $_SESSION['message'];
     unset($_SESSION['message']);
@@ -88,6 +76,7 @@ if (isset($_SESSION['message'])) {
 // BAGIAN TAMPILAN (VIEW)
 // ===================================================================
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -111,12 +100,8 @@ if (isset($_SESSION['message'])) {
     <div class="container">
         
         <?php
-        // 7. Router Tampilan
         switch ($action):
         
-        // ======================================
-        // CASE: TAMBAH DATA (tambah.php)
-        // ======================================
         case 'tambah':
         ?>
             <h2>Tambah Donasi</h2>
@@ -194,9 +179,6 @@ if (isset($_SESSION['message'])) {
         <?php
         break;
 
-        // ======================================
-        // CASE: EDIT DATA (edit.php)
-        // ======================================
         case 'edit':
             $stmt = $pdo->prepare("SELECT * FROM transaksi_donasi WHERE id_transaksi = ?");
             $stmt->execute([$id]);
@@ -284,9 +266,6 @@ if (isset($_SESSION['message'])) {
         <?php
         break;
 
-        // ======================================
-        // CASE: DETAIL DATA (detail.php)
-        // ======================================
         case 'detail':
             $stmt = $pdo->prepare("
                 SELECT t.*, p.nama_program, d.nama_donatur, m.nama_metode, s.nama_status
@@ -353,11 +332,7 @@ if (isset($_SESSION['message'])) {
         <?php
         break;
 
-        // ======================================
-        // CASE: TAMPIL DATA (index.php)
-        // ======================================
         default:
-            // Ambil data untuk tabel utama
             $sql = "SELECT t.id_transaksi, d.nama_donatur, p.nama_program, t.jumlah_donasi, s.nama_status
                     FROM transaksi_donasi t
                     JOIN donatur d ON t.id_donatur = d.id_donatur
@@ -447,37 +422,24 @@ if (isset($_SESSION['message'])) {
     </footer>
 
     <script>
-        // Pastikan skrip ini berjalan setelah halaman dimuat
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. Ambil elemen input pencarian
             const searchInput = document.getElementById('searchInput');
-            
-            // 2. Ambil elemen body tabel
             const tableBody = document.getElementById('donasiTableBody');
-            
-            // 3. Ambil semua baris (tr) di dalam body tabel
             const allRows = tableBody.getElementsByTagName('tr');
-
-            // 4. Tambahkan event listener 'keyup' (berjalan setiap kali tombol keyboard dilepas)
             searchInput.addEventListener('keyup', function() {
-                const filter = searchInput.value.toLowerCase(); // Ambil nilai input & ubah ke huruf kecil
+                const filter = searchInput.value.toLowerCase();
 
-                // 5. Loop melalui semua baris tabel
                 for (let i = 0; i < allRows.length; i++) {
                     const row = allRows[i];
                     
-                    // Ambil sel (td) ke-2 (indeks 1), yaitu kolom "Donatur"
                     const nameCell = row.getElementsByTagName('td')[1]; 
                     
                     if (nameCell) {
                         const nameText = nameCell.textContent || nameCell.innerText;
                         
-                        // 6. Cek apakah nama donatur mengandung teks yang dicari
                         if (nameText.toLowerCase().indexOf(filter) > -1) {
-                            // Jika ya, tampilkan barisnya
                             row.style.display = ""; 
                         } else {
-                            // Jika tidak, sembunyikan barisnya
                             row.style.display = "none"; 
                         }
                     }
