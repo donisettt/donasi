@@ -2,8 +2,8 @@
 
 Proyek ini adalah aplikasi web PHP sederhana untuk manajemen data donasi, yang dibuat untuk memenuhi tugas perkuliahan.
 
-**Nama:** Doni Setiawan Wahyono
-**NIM:** 23552011146
+**Nama:** Doni Setiawan Wahyono <br>
+**NIM:** 23552011146 <br>
 **Mata Kuliah:** Pemrograman Web 1
 
 ---
@@ -36,27 +36,10 @@ Sesuai dengan arahan tugas, proyek ini terdiri dari 3 file utama:
 
 ## Skema Database
 
-Sistem ini menggunakan 5 tabel yang saling berelasi di database `db_donasi_lengkap`:
+Sistem ini menggunakan 5 tabel yang saling berelasi di database `db_donasi`:
 
 1.  `program_donasi` (Master data program/kampanye donasi)
 2.  `donatur` (Master data orang yang berdonasi)
 3.  `metode_pembayaran` (Master data metode bayar, cth: 'Transfer Bank')
 4.  `status_pembayaran` (Master data status, cth: 'Berhasil', 'Pending')
 5.  `transaksi_donasi` (Tabel transaksi utama yang menghubungkan ke-4 tabel master di atas)
-
-### Relasi Tabel (phpMyAdmin)
-
-[**Sisipkan screenshot relasi 5 tabel Anda dari phpMyAdmin Designer di sini**]
-
-*(Cukup upload screenshot relasi Anda ke GitHub dan ganti teks di atas dengan: `![Relasi Tabel](nama_file_screenshot_anda.png)`)*
-
-## Screenshot Tampilan
-
-### Halaman Utama (Read & Search)
-![Halaman Utama](Cuplikan%20layar%202025-11-07%20124700.png)
-
-### Halaman Tambah Donasi (Create)
-![Tambah Donasi](tambah%20donasi.png)
-
-### Halaman Detail Donasi (Read Only)
-![Detail Donasi](detail.png)
